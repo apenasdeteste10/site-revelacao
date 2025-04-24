@@ -31,21 +31,17 @@
       font-size: 1.1em;
       color: #777;
     }
+    #loading {
+      font-size: 1.2em;
+      color: #888;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Diagnóstico Completo</h1>
-    <p>Após análise detalhada do código genético, escaneamento emocional e ultrassonografia de bytes...</p>
+    <p id="loading">Aguarde enquanto realizamos a análise...</p>
     
-    <!-- Simulando a análise -->
-    <div id="loading">
-      <p>Escaneando dentição digital...</p>
-      <p>Verificando DNA parental...</p>
-      <p>Analisando histórico de consultas...</p>
-      <p>Conectando com o banco de dados do amor...</p>
-    </div>
-
     <div id="revelacao" style="display:none;">
       <div class="revelacao">💖 É MENINA!</div>
       <p class="subtexto">Sua próxima consulta é com o amor da sua vida!</p>
@@ -59,11 +55,11 @@
   </div>
 
   <script>
-    // Simula o carregamento da consulta
+    // Função que simula o carregamento e depois mostra a revelação
     setTimeout(function() {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('revelacao').style.display = 'block';
-    }, 5000); // Muda para a revelação depois de 5 segundos
+    }, 3000); // Vai mostrar a revelação após 3 segundos
   </script>
 </body>
 </html>
