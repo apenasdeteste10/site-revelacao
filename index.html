@@ -35,31 +35,81 @@
       font-size: 1.2em;
       color: #888;
     }
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 1em;
+      width: 80%;
+      max-width: 300px;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Diagnóstico Completo</h1>
-    <p id="loading">Aguarde enquanto realizamos a análise...</p>
-    
-    <div id="revelacao" style="display:none;">
-      <div class="revelacao">💖 É MENINA!</div>
-      <p class="subtexto">Sua próxima consulta é com o amor da sua vida!</p>
 
-      <!-- Som de batimentos cardíacos -->
-      <audio autoplay>
-        <source src="https://www.soundjay.com/human/heartbeat-01a.mp3" type="audio/mpeg">
-        Seu navegador não suporta áudio embutido.
-      </audio>
-    </div>
+<!-- Página 1 - Tela de Boas-vindas -->
+<div id="page1" class="container">
+  <h1>Bem-vindo à Consulta Odontológica Digital!</h1>
+  <p>Hoje, vamos realizar um exame especial e revelar o sexo do bebê!</p>
+  <button onclick="nextPage('page2')">Iniciar Exame</button>
+</div>
+
+<!-- Página 2 - Formulário de Check-up -->
+<div id="page2" class="container" style="display:none;">
+  <h1>Preencha seus dados</h1>
+  <form id="checkupForm">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" required><br>
+    <label for="birthdate">Data de Nascimento:</label>
+    <input type="date" id="birthdate" required><br>
+    <button type="button" onclick="startDiagnosis()">Realizar Exame</button>
+  </form>
+</div>
+
+<!-- Página 3 - Diagnóstico e Revelação -->
+<div id="page3" class="container" style="display:none;">
+  <h1>Diagnóstico Completo</h1>
+  <p id="loading">Aguarde enquanto realizamos a análise...</p>
+
+  <div id="revelacao" style="display:none;">
+    <div class="revelacao">💖 É MENINA!</div>
+    <p class="subtexto">Sua próxima consulta é com o amor da sua vida!</p>
+    <!-- Som de batimentos cardíacos -->
+    <audio autoplay>
+      <source src="https://www.soundjay.com/human/heartbeat-01a.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio embutido.
+    </audio>
   </div>
+</div>
 
-  <script>
-    // Função que simula o carregamento e depois mostra a revelação
+<script>
+// Função para mudar entre as páginas
+function nextPage(page) {
+  document.getElementById('page1').style.display = 'none';
+  document.getElementById('page2').style.display = 'none';
+  document.getElementById('page3').style.display = 'none';
+  document.getElementById(page).style.display = 'block';
+}
+
+// Função para iniciar o exame e mostrar o diagnóstico
+function startDiagnosis() {
+  // Valida o formulário
+  const name = document.getElementById('name').value;
+  const birthdate = document.getElementById('birthdate').value;
+  
+  if (name && birthdate) {
+    nextPage('page3'); // Vai para a página de diagnóstico
     setTimeout(function() {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('revelacao').style.display = 'block';
-    }, 3000); // Vai mostrar a revelação após 3 segundos
-  </script>
+    }, 10000); // Revela o resultado após 10 segundos
+  } else {
+    alert('Por favor, preencha todos os campos!');
+  }
+}
+
+// Inicialmente, mostra a página 1
+nextPage('page1');
+</script>
+
 </body>
 </html>
