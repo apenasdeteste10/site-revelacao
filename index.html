@@ -38,15 +38,32 @@
     <h1>Diagnóstico Completo</h1>
     <p>Após análise detalhada do código genético, escaneamento emocional e ultrassonografia de bytes...</p>
     
-    <div class="revelacao">💖 É MENINA!</div>
-    
-    <p class="subtexto">Sua próxima consulta é com o amor da sua vida!</p>
+    <!-- Simulando a análise -->
+    <div id="loading">
+      <p>Escaneando dentição digital...</p>
+      <p>Verificando DNA parental...</p>
+      <p>Analisando histórico de consultas...</p>
+      <p>Conectando com o banco de dados do amor...</p>
+    </div>
 
-    <!-- Som de batimentos cardíacos -->
-    <audio autoplay>
-      <source src="https://www.soundjay.com/human/heartbeat-01a.mp3" type="audio/mpeg">
-      Seu navegador não suporta áudio embutido.
-    </audio>
+    <div id="revelacao" style="display:none;">
+      <div class="revelacao">💖 É MENINA!</div>
+      <p class="subtexto">Sua próxima consulta é com o amor da sua vida!</p>
+
+      <!-- Som de batimentos cardíacos -->
+      <audio autoplay>
+        <source src="https://www.soundjay.com/human/heartbeat-01a.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio embutido.
+      </audio>
+    </div>
   </div>
+
+  <script>
+    // Simula o carregamento da consulta
+    setTimeout(function() {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('revelacao').style.display = 'block';
+    }, 5000); // Muda para a revelação depois de 5 segundos
+  </script>
 </body>
 </html>
