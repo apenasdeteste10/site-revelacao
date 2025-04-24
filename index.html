@@ -24,7 +24,7 @@
     .revelacao {
       font-size: 2em;
       margin-top: 30px;
-      color: #e91e63; /* rosa */
+      color: #e91e63;
     }
     .subtexto {
       margin-top: 10px;
@@ -46,34 +46,28 @@
 </head>
 <body>
 
-<!-- Página 1 - Tela de Boas-vindas -->
+<!-- Página 1 -->
 <div id="page1" class="container">
-  <h1>Bem-vindo à Consulta Odontológica Digital!</h1>
-  <p>Hoje, vamos realizar um exame especial e revelar o sexo do bebê!</p>
+  <h1>Bem-vindo à Consulta Digital!</h1>
+  <p>Prepare-se para uma experiência única de revelação.</p>
   <button onclick="nextPage('page2')">Iniciar Exame</button>
 </div>
 
-<!-- Página 2 - Formulário de Check-up -->
+<!-- Página 2 -->
 <div id="page2" class="container" style="display:none;">
-  <h1>Preencha seus dados</h1>
-  <form id="checkupForm">
-    <label for="name">Nome:</label>
-    <input type="text" id="name" required><br>
-    <label for="birthdate">Data de Nascimento:</label>
-    <input type="date" id="birthdate" required><br>
-    <button type="button" onclick="startDiagnosis()">Realizar Exame</button>
-  </form>
+  <h1>Formulário de Check-Up</h1>
+  <input type="text" id="name" placeholder="Seu nome" required><br>
+  <input type="date" id="birthdate" required><br>
+  <button onclick="startDiagnosis()">Realizar Exame</button>
 </div>
 
-<!-- Página 3 - Diagnóstico e Revelação -->
+<!-- Página 3 -->
 <div id="page3" class="container" style="display:none;">
   <h1>Diagnóstico Completo</h1>
-  <p id="loading">Aguarde enquanto realizamos a análise...</p>
-
+  <p id="loading">Analisando dados genéticos, escaneando sorriso... Aguarde.</p>
   <div id="revelacao" style="display:none;">
     <div class="revelacao">💖 É MENINA!</div>
-    <p class="subtexto">Sua próxima consulta é com a princesa MARINA!</p>
-    <!-- Som de batimentos cardíacos -->
+    <p class="subtexto">Sua próxima consulta é com o amor da sua vida!</p>
     <audio autoplay>
       <source src="https://www.soundjay.com/human/heartbeat-01a.mp3" type="audio/mpeg">
       Seu navegador não suporta áudio embutido.
@@ -82,33 +76,31 @@
 </div>
 
 <script>
-// Função para mudar entre as páginas
-function nextPage(page) {
+function nextPage(pageId) {
   document.getElementById('page1').style.display = 'none';
   document.getElementById('page2').style.display = 'none';
   document.getElementById('page3').style.display = 'none';
-  document.getElementById(page).style.display = 'block';
+  document.getElementById(pageId).style.display = 'block';
 }
 
-// Função para iniciar o exame e mostrar o diagnóstico
 function startDiagnosis() {
-  // Valida o formulário
   const name = document.getElementById('name').value;
   const birthdate = document.getElementById('birthdate').value;
-  
+
   if (name && birthdate) {
-    nextPage('page3'); // Vai para a página de diagnóstico
-    setTimeout(function() {
+    nextPage('page3');
+    setTimeout(() => {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('revelacao').style.display = 'block';
-    }, 10000); // Revela o resultado após 10 segundos
+    }, 10000); // 10 segundos
   } else {
     alert('Por favor, preencha todos os campos!');
   }
 }
 
-// Inicialmente, mostra a página 1
-nextPage('page1');
+window.onload = function() {
+  nextPage('page1');
+};
 </script>
 
 </body>
